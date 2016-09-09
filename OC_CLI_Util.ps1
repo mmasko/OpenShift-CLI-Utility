@@ -15,7 +15,7 @@ if ($password -eq $null) {$password = Read-Host "Enter Password"}
 # Do this for each project you have so the script will automate selecting the correct local code repo.
 #ex. $proj1n = "myprojectname"
 #ex. $proj1 = "D:\my\project\folder"
-$proj1n = "wps"
+$proj1n = $null
 $proj1 = $null
 $proj2n = $null
 $proj2 = $null
