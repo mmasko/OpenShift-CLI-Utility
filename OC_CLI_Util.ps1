@@ -33,7 +33,7 @@ cls
 "3: Select Pod"
 "4: Create New Project"
 "c: Custom Command"
-"i: Configure OC First Time"
+#"i: Configure OC First Time" Coming Soon
 "r: Rsync to active pod"
 "l: Logout of OpenShift"
 "q: Quit without logout"
@@ -156,6 +156,7 @@ do
            'c' {cls; customcommand}
            'r' {cls; rsync} 
            'l' {cls; oc logout; powershell}
+           'q' {}
      }
 }
 until ($input -eq 'q')
