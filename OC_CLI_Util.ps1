@@ -15,7 +15,7 @@ if ($password -eq $null) {$password = Read-Host "Enter Password"}
 # Do this for each project you have so the script will automate selecting the correct local code repo.
 #ex. $proj1n = "myprojectname"
 #ex. $proj1 = "D:\my\project\folder"
-$proj1n = $null
+$proj1n = "wps"
 $proj1 = $null
 $proj2n = $null
 $proj2 = $null
@@ -129,13 +129,14 @@ function requesttoken {
 if ($password -eq $null) {$password = Read-Host "Enter your password"}
 $oauthurl = "$url/oauth/token/request"
 $ie = New-Object -com InternetExplorer.Application 
-$ie.visible=$false
+$ie.visible=$true
 $ie.navigate("$oauthurl") 
 while($ie.ReadyState -ne 4) {start-sleep -m 100} 
 $ie.document.getElementById("inputUsername").value= "$username" 
 $ie.document.getElementById("inputPassword").value = "$password" 
-$submit = $ie.document.getElementsByClassName("btn btn-primary btn-lg") | Select-Object -First 1
+$submit = $ie.document.documentElement.getElementsByClassName("btn btn-primary btn-lg") | Select-Object -First 1
 $submit.click()
+start-sleep -s 5
 while($ie.ReadyState -ne 4) {start-sleep -m 100} 
 $out = $ie.Document.body.innertext
 $Output = @()
