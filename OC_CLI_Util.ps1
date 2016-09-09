@@ -5,8 +5,8 @@
 $url = "https://ose.csil.cdt.ca.gov:8443"
 
 #Fill out username and password and remove comments to keep your credentials permanently in place.
-$username = "myles.maskovich"
-$password = "RLWlpLPTHrpy4pgmm2VP"
+$username = $null
+$password = $null
 if ($username -eq $null) {$username = Read-Host "Enter your OpenShift Username"}
 if ($password -eq $null) {$password = Read-Host "Enter Password"}
 
@@ -15,12 +15,12 @@ if ($password -eq $null) {$password = Read-Host "Enter Password"}
 # Do this for each project you have so the script will automate selecting the correct local code repo.
 #ex. $proj1n = "myprojectname"
 #ex. $proj1 = "D:\my\project\folder"
-$proj1n = "wps"
-$proj1 = "J:\Projects\WPS2\WPS2\"
-$proj2n = "$null"
-$proj2 = "$null"
-$proj3n = "$null"
-$proj3 = "$null"
+$proj1n = $null
+$proj1 = $null
+$proj2n = $null
+$proj2 = $null
+$proj3n = $null
+$proj3 = $null
 
 function Show-Menu {
 cls
