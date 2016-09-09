@@ -1,7 +1,7 @@
 ﻿#Authored by Myles Maskovich
 #State of California, Department of Technology Services, Office of Digital Innovation
 
-#Enter URL of your OpenShift Environment withouth ending / ex. https://openshift.com
+#Enter URL of your OpenShift Environment withouth ending / ex. "https://openshift.com"
 $url = "https://ose.csil.cdt.ca.gov:8443"
 
 #Fill out username and password and remove comments to keep your credentials permanently in place.
@@ -15,7 +15,7 @@ if ($password -eq $null) {$password = Read-Host "Enter Password"}
 # Do this for each project you have so the script will automate selecting the correct local code repo.
 #ex. $proj1n = "myprojectname"
 #ex. $proj1 = "D:\my\project\folder"
-$proj1n = $null
+$proj1n = "wps"
 $proj1 = $null
 $proj2n = $null
 $proj2 = $null
@@ -51,8 +51,6 @@ showenvironment
 Clear-Variable -name password -Scope script
 }
 
-
-
 function showenvironment {
 "=======Your Environment========="
 #"OSE: $ose"
@@ -78,8 +76,6 @@ function getprojects {
                         $MenuSel = Read-Host -prompt "Select which project to use"
                         $script:env = $menuitem[$MenuSel-1]
                         oc project $menuitem[$MenuSel-1]
-                        
-                        
 }
 
 function getpods {
@@ -96,7 +92,6 @@ function getpods {
                         $podMenuSel = Read-Host -prompt "Select which pod to use"
                         $script:workpod = $podmenu[$podMenuSel-1]
                         $script:remotefolder = oc rsh "$workpod" "pwd"
-                        
 }
 
 function rsync {
@@ -136,13 +131,12 @@ $ie.document.getElementById("inputUsername").value= "$username"
 $ie.document.getElementById("inputPassword").value = "$password" 
 $submit = $ie.document.documentElement.getElementsByClassName("btn btn-primary btn-lg") | Select-Object -First 1
 $submit.click()
-start-sleep -s 5
-while($ie.ReadyState -ne 4) {start-sleep -m 100} 
+while($ie.busy) {start-sleep -m 100}
+while($ie.ReadyState -ne 4) {start-sleep -m 100}
 $out = $ie.Document.body.innertext
-$Output = @()
+$output = @()
 $array = $out.Split(“`n”)
 $script:login = $array[4]
-
 }
 
 do
