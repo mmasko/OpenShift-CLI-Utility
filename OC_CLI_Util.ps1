@@ -1,10 +1,11 @@
 ﻿#Authored by Myles Maskovich
 #State of California, Department of Technology Services, Office of Digital Innovation
 
-#Enter URL of your OpenShift Environment withouth ending / ex. "https://openshift.com"
-$url = "https://ose.csil.cdt.ca.gov:8443"
+#Replace $null with the URL of your OpenShift Environment withouth the forward slash. ex. "https://openshift.com"
+$url = $null
 
 #Fill out username and password and remove comments to keep your credentials permanently in place.
+#This prevents having to enter your credentials every time, but reduces security.
 $username = $null
 $password = $null
 if ($username -eq $null) {$username = Read-Host "Enter your OpenShift Username"}
@@ -15,7 +16,7 @@ if ($password -eq $null) {$password = Read-Host "Enter Password"}
 # Do this for each project you have so the script will automate selecting the correct local code repo.
 #ex. $proj1n = "myprojectname"
 #ex. $proj1 = "D:\my\project\folder"
-$proj1n = "wps"
+$proj1n = $null
 $proj1 = $null
 $proj2n = $null
 $proj2 = $null
@@ -124,7 +125,7 @@ function requesttoken {
 if ($password -eq $null) {$password = Read-Host "Enter your password"}
 $oauthurl = "$url/oauth/token/request"
 $ie = New-Object -com InternetExplorer.Application 
-$ie.visible=$true
+$ie.visible=$false
 $ie.navigate("$oauthurl") 
 while($ie.ReadyState -ne 4) {start-sleep -m 100} 
 $ie.document.getElementById("inputUsername").value= "$username" 
