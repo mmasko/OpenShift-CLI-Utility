@@ -56,6 +56,7 @@ Clear-Variable -name password -Scope script
 
 function showenvironment {
 "=======Your Environment========="
+"OSE: $url"
 "Project: $env"
 "Pod: $workpod"
 "Build: $latestbuild"
