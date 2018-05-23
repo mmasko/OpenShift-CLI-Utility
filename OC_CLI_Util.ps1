@@ -1,13 +1,13 @@
 ﻿#Authored by Myles Maskovich
 #State of California, Department of Technology Services, Office of Digital Innovation
-
+cd "C:\Users\myles.maskovich\Downloads\OpenShift-CLI-Utility-master\OpenShift-CLI-Utility-master"
 #Replace $null with the URL of your OpenShift Environment withouth the forward slash. ex. "https://openshift.com"
-$url = "https://ose.csil.cdt.ca.gov:8443"
+$url = "https://ose.dev-csil.cdt.ca.gov:8443"
 
 #Fill out username and password and remove comments to keep your credentials permanently in place.
 #This prevents having to enter your credentials every time, but reduces security.
-$username = $null
-$password = $null
+$username = ""
+$password = ""
 if ($username -eq $null) {$username = Read-Host "Enter your OpenShift Username"}
 if ($password -eq $null) {$password = Read-Host "Enter Password"}
 
@@ -61,7 +61,7 @@ function showenvironment {
 "Pod: $workpod"
 "Build: $latestbuild"
 "remote: $remotefolder"
-"Local: $localfolder"
+"Local: $proj1"
 "================================"
 }
 
@@ -117,7 +117,7 @@ return
 
 function rsync {
 $b = ":"
-$o = "oc rsync --no-perms=true $localfolder $workpod$b$remotefolder"
+$o = "oc rsync --no-perms=true $workpod$b$remotefolder $proj1"
 Invoke-Expression $o
 pause
 }
@@ -127,12 +127,12 @@ showenvironment
 $command = Read-Host "Type custom command here"
 Invoke-Expression $command
 $command
-pause
 }
 
 function OSlogin {
 cls
 requesttoken
+
 invoke-expression $login
 getprojects
 getpods
