@@ -6,8 +6,8 @@ $url = "https://ose.dev-csil.cdt.ca.gov:8443"
 
 #Fill out username and password and remove comments to keep your credentials permanently in place.
 #This prevents having to enter your credentials every time, but reduces security.
-$username = ""
-$password = ""
+$username = $null
+$password = $null
 if ($username -eq $null) {$username = Read-Host "Enter your OpenShift Username"}
 if ($password -eq $null) {$password = Read-Host "Enter Password"}
 
